@@ -1,0 +1,15 @@
+oc_aosp_IP1400v2 dev_branch/vssdk/v0.2 syna-o-aosp.xml bg5ct/ubuild-tadev.xml dev_branch/vssdk/v0.2 /home/sbt/Jenkins_Build_Result/sandal/AndroidO
+oc_ginkgo dev_branch/vssdk/v0.2 syna-o-tv-dev.xml bg5ct/ubuild-tadev.xml dev_branch/vssdk/v0.2 /home/sbt/Jenkins_Build_Result/sandal/AndroidO
+oc_woofer2 rel_branch/android_o/bg4ct/tz4/201803120050 syna-o-tv-dev.xml bg5ct/ubuild-tadev.xml rel_branch/android_o/bg4ct/tz4/201803120050 /home/sbt/Jenkins_Build_Result/sandal/AndroidO-UHD2
+oc_uplus_tvg2 rel_branch/gmc/android_o/bg2q4k/uplus_tvg2_release/201805281414 syna-o-tv-dev.xml bg2q/ubuild-tadev.xml rel_branch/gmc/android_o/bg2q4k/uplus_tvg2_release/201805281414 /home/sbt/Jenkins_Build_Result/sandal/AndroidO-UHD1
+oc_uplus_hg2 rel_branch/gmc/android_o/bg2q4k/uplus_tvg2_release/201805281414 syna-o-tv-dev.xml bg2q/ubuild-tadev.xml rel_branch/gmc/android_o/bg2q4k/uplus_tvg2_release/201805281414 /home/sbt/Jenkins_Build_Result/sandal/AndroidO-UHD1
+oc_uplus_hg2_iot rel_branch/gmc/android_o/bg2q4k/uplus_tvg2_release/201805281414 syna-o-tv-dev.xml bg2q/ubuild-tadev.xml rel_branch/gmc/android_o/bg2q4k/uplus_tvg2_release/201805281414 /home/sbt/Jenkins_Build_Result/sandal/AndroidO-UHD1
+sequoia_v4 p-tv-dev syna-p-tv-dev.xml vssdk.xml dev_branch/master /home/sbt/Jenkins_Build_Result/sandal/AndroidP
+sequoia_pl_v4 p-tv-dev syna-p-tv-dev.xml vssdk.xml dev_branch/master /home/sbt/Jenkins_Build_Result/sandal/AndroidP
+sequoia_google_v4 p-tv-dev syna-p-tv-dev.xml vssdk.xml dev_branch/master /home/sbt/Jenkins_Build_Result/sandal/AndroidP
+sequoia_google_ffv_v4 p-tv-dev syna-p-tv-dev.xml vssdk.xml dev_branch/master /home/sbt/Jenkins_Build_Result/sandal/AndroidP
+sequoia_google p-tv-dev syna-p-tv-dev.xml vssdk.xml dev_branch/master /home/sbt/Jenkins_Build_Result/sandal/AndroidP
+aosp_sequoia_noip_v4 p-tv-dev syna-p-aosp-dev.xml vssdk.xml dev_branch/master /home/sbt/Jenkins_Build_Result/sandal/AndroidP
+aosp_sequoia_ab_v4 p-tv-dev syna-p-aosp-dev.xml vssdk.xml dev_branch/master /home/sbt/Jenkins_Build_Result/sandal/AndroidP
+
+

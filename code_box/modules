@@ -1,0 +1,115 @@
+function repo_init_cmd()
+{
+  echo "[`date +%F_%T`][CMD] repo init -u $1 --repo-url=$2 -b $3 -m $4"
+  echo "[`date +%F_%T`][CMD] repo init -u $1 --repo-url=$2 -b $3 -m $4" >> ${ErrorLogFile} 2>&1
+  repo init -u $1 --repo-url=$2 -b $3 -m $4 
+  ret=$?
+  if [ $ret -ne 0 ]; then
+    echo "[ERROR] repo init failed" >> ${ErrorLogFile} 2>&1
+    exit $ret
+  fi    
+}
+
+
+function print_head()
+{
+  echo "*****************************************************"
+  echo "** $1"
+  echo "*****************************************************"
+}
+
+function print_tail()
+{
+  echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+  echo "++ $1"
+  echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+  echo
+}
+
+function error_handling2()
+{
+  error_code=$1
+  if [ $error_code -ne 0 ]; then
+    echo "[ERROR] ret=$error_code, Failed Step: $shellCmd"
+    echo "[ERROR] ret=$error_code, Failed Step: $shellCmd" >> ${ErrorLogFile} 2>&1
+    exit $error_code
+  fi
+}
+
+function error_handling()
+{
+  error_code=$1
+  error_msg=`echo $@|sed 's/'$1'//'`
+  if [ $error_code -ne 0 ]; then
+    echo "[ERROR] Error with code $error_code"
+    echo "Error Message: Failed in $error_msg"
+    exit $error_code
+  fi
+}
+
+function exec_cmd()
+{
+  echo "[`date +%F_%T`][CMD] $@"
+  $@
+}
+
+# call shell commands, do not check ret code
+function shellCall()
+{
+  shellCmd=$@
+  echo "[`date +%F_%T`][CMD] $shellCmd"
+  echo "[`date +%F_%T`][CMD] $shellCmd" >> ${ErrorLogFile}
+  $shellCmd >> ${ErrorLogFile} 2>&1
+}
+
+# call shell commands, assert(0==ret_code)
+function shellCheckCall()
+{
+  shellCmd=$@
+  echo "[`date +%F_%T`][CMD] $shellCmd"
+  echo "[`date +%F_%T`][CMD] $shellCmd" >> ${ErrorLogFile}
+  $shellCmd >> ${ErrorLogFile} 2>&1
+  error_handling2 $? "$shellCmd"
+}
+
+# call shell commands without output to console, assert(0==ret_code)
+function quietShellCheckCall()
+{
+  shellCmd=$@
+  $shellCmd >> ${ErrorLogFile} 2>&1
+  error_handling2 $? "$shellCmd"
+}
+
+function exec_cmd_check_result()
+{
+  exec_cmd $@
+  error_handling $? "$@"
+}
+
+function check_directory()
+{
+  if [ -d $1 ]; then
+    flag=`ls -ld $1 | awk '{printf("%s_%s_%s",$6,$7,$8)}'`
+    flag_final=${flag/:/_}
+    mv $1 $1'__'$flag_final
+  fi
+  rm -rf $1
+  mkdir -p $1
+}
+
+function set_env()
+{
+  cd $work_dir
+  export MAKE_JOBS=${CPU_NUM}
+  export USE_CCACHE=1
+  . ./build/envsetup.sh
+  lunch ${android_product}-${android_variant}
+}
+
+function copy_folder_structure()
+{
+  src_folder=`dirname $1`/`basename $1`
+  dst_folder=$2
+  exec_cmd mkdir -p $dst_folder/`dirname $src_folder`
+  exec_cmd cp -aL $src_folder $dst_folder/`dirname $src_folder`
+}

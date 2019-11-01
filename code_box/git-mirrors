@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+
+import subprocess
+import sys
+
+
+mirrors = [ ( "ssh://sc-debu-git.synaptics.com:29420/",
+                "ssh://10.70.24.122:29420/")]
+
+
+def main():
+
+    if sys.argv[1] == 'enable':
+
+        for url, mirror in mirrors:
+            subprocess.check_call(['git', 'config', '--global', 'url.%s.insteadOf' % mirror, url])
+            subprocess.check_call(['git', 'config', '--global', 'url.%s.pushInsteadOf' % url, url])
+
+    elif sys.argv[1] == 'disable':
+
+        for url, mirror in mirrors:
+            try:
+                with open('/dev/null', 'w') as fp:
+                    subprocess.check_call(['git', 'config', '--global', 
+                                '--remove-section', 'url.%s' % mirror], stdout=fp, stderr=fp)
+            except:
+                pass # ignore errors (value doesn't exist)
+            try:
+                with open('/dev/null', 'w') as fp:
+                    subprocess.check_call(['git', 'config', '--global', 
+                                '--remove-section', 'url.%s' % url], stdout=fp, stderr=fp)
+            except:
+                pass # ignore errors (value doesn't exist)
+
+    else:
+        print("Invalid parameter: should be either enable or disable")
+        exit(1)
+
+
+if __name__ == "__main__":
+    main()

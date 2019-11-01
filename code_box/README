@@ -1,0 +1,21 @@
+
+Note:
+ We currently support these profiles,please input correct profiles on option "-p"
+    AndroidO:  oc_aosp_IP1400v2 oc_ginkgo oc_woofer2 oc_uplus_tvg2 oc_uplus_hg2 oc_uplus_hg2_iot 
+    AndroidP:  sequoia_v4 sequoia_pl_v4 sequoia_google_v4 sequoia_google_ffv_v4 sequoia_google aosp_sequoia_noip_v4 aosp_sequoia_ab_v4
+
+
+How to use:
+ If want to pull the latest branch code, for example, please use:
+   ./code_box -a /home/sbt/O/android -s /home/sbt/O/sdk -p oc_gingko
+
+
+ If want to pull the code with corresponding manifest, for example,please use:
+  ./code_box -a /home/sbt/O/android -s /home/sbt/O/sdk -p oc_gingko -m 201810010045
+
+Build log:
+ Please refer to ~/code_box/out/$profile/build.log
+
+
+
+
